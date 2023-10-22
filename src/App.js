@@ -1,12 +1,13 @@
-import './App.css';
+import React from "react";
+import AppRouter from "./router";
+import "./App.css";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">  
-      </header>
+    <div className="main-container">
+      <AppRouter />
     </div>
   );
-}
+};
 
 export default App;
