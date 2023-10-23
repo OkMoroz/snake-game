@@ -7,6 +7,8 @@ const ModalWindow = ({ isOpen, onRequestClose, onSubmit }) => {
   const [playerName, setPlayerName] = useState("");
   const [playerDifficulty, setPlayerDifficulty] = useState("easy");
   const [error, setError] = useState("");
+  const [score, setScore] = useState(0);
+  const [rating, setRating] = useState(0);
   const [isPlayerNameEntered, setIsPlayerNameEntered] = useState(false);
   const navigate = useNavigate();
 
@@ -21,28 +23,31 @@ const ModalWindow = ({ isOpen, onRequestClose, onSubmit }) => {
 
     if (existingPlayerData) {
       onRequestClose();
-      navigate("/field");
     } else if (playerName === "") {
       setError("You haven't entered a name. Enter your name");
     } else {
       const newPlayerData = {
         playerName,
         playerDifficulty,
-        rating: 0,
+        score,
+        rating,
       };
+
       localStorage.setItem(playerName, JSON.stringify(newPlayerData));
 
       const speedOptions = {
         easy: 1000,
         medium: 500,
-        hard: 250,
+        hard: 1,
       };
       const gameSpeed = speedOptions[playerDifficulty];
 
       onSubmit({ ...newPlayerData, gameSpeed });
 
       onRequestClose();
-      navigate("/field");
+      navigate("/field", {
+        state: { playerDifficulty, playerName, gameSpeed },
+      });
     }
   };
 

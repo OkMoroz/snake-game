@@ -6,7 +6,6 @@ import ModalWindow from "../../components/ModalWindow/ModalWindow";
 
 const Login = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const playerNameFromLocalStorage = localStorage.getItem("playerName");
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -30,7 +29,6 @@ const Login = () => {
           onSubmit={(data) => {
             console.log("Дані для входу:", data);
           }}
-          playerName={playerNameFromLocalStorage || "Player"}
         />
       </div>
     </>

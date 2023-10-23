@@ -1,14 +1,10 @@
 import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
+
 import "./Game.css";
 import ModalWindow from "../ModalWindow/ModalWindow";
 
-const Game = ({
-  playerName,
-  setPlayerName,
-  playerDifficulty,
-  setPlayerDifficulty,
-  gameSpeed,
-}) => {
+const Game = () => {
   const boardSize = 25;
   const [snake, setSnake] = useState([
     { row: 0, col: 4 },
@@ -23,20 +19,9 @@ const Game = ({
   const [gameOver, setGameOver] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [lastPlayerName, setLastPlayerName] = useState("");
-
-  useEffect(() => {
-    const playerDataFromLocalStorage = JSON.parse(
-      localStorage.getItem("playerName")
-    );
-    if (playerDataFromLocalStorage) {
-      if (playerDataFromLocalStorage.playerName) {
-        setPlayerName(playerDataFromLocalStorage.playerName);
-      }
-      if (playerDataFromLocalStorage.playerDifficulty) {
-        setPlayerDifficulty(playerDataFromLocalStorage.playerDifficulty);
-      }
-    }
-  }, [playerName, setPlayerName, playerDifficulty, setPlayerDifficulty]);
+  const location = useLocation();
+  const { playerDifficulty, playerName, gameSpeed } = location.state;
+  
 
   useEffect(() => {
     const handleKeyPress = (event) => {
@@ -169,7 +154,7 @@ const Game = ({
   return (
     <div className="field">
       <div className="game-info">
-        <div className="game-name">Player: {playerName}</div>
+        <div className="game-name">Player: '{playerName}'</div>
         <div className="game-name">Score: {score}</div>
         <div className="game-name">Difficulty: {playerDifficulty}</div>
       </div>
