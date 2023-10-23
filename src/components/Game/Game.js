@@ -91,13 +91,12 @@ const Game = ({
       const endGame = () => {
         setGameOver(true);
       };
-
-      // for (let i = 1; i < newSnake.length; i++) {
-      //   if (head.row === newSnake[i].row && head.col === newSnake[i].col) {
-      //     endGame();
-      //     return;
-      //   }
-      // }
+      for (let i = 2; i < newSnake.length; i++) {
+        if (head.row === newSnake[i].row && head.col === newSnake[i].col) {
+          endGame();
+          return;
+        }
+      }
 
       if (newHead.row === food.row && newHead.col === food.col) {
         setScore(score + 1);
@@ -170,10 +169,36 @@ const Game = ({
   return (
     <div className="field">
       <div className="game-info">
-        <div>Player: {playerName}</div>
-        <div>Score: {score}</div>
-        <div>Difficulty: {playerDifficulty}</div>
+        <div className="game-name">Player: {playerName}</div>
+        <div className="game-name">Score: {score}</div>
+        <div className="game-name">Difficulty: {playerDifficulty}</div>
       </div>
+      {gameOver && (
+        <div className="game-over-modal">
+          <h2>GAME OVER</h2>
+          <p>Player: {playerName}</p>
+          <p>Score: {score}</p>
+          <p>Difficulty: {playerDifficulty}</p>
+          {!isModalOpen && (
+            <button
+              className="primary-button"
+              onClick={() => {
+                setIsModalOpen(true);
+              }}
+            >
+              Restart
+            </button>
+          )}
+          <ModalWindow
+            isOpen={isModalOpen}
+            onRequestClose={() => {
+              setIsModalOpen(false);
+              window.location.reload();
+            }}
+          />
+        </div>
+      )}
+
       <div className="board">
         {Array.from({ length: boardSize }).map((_, rowIndex) => (
           <div key={rowIndex} className="row">
@@ -201,27 +226,6 @@ const Game = ({
           </div>
         ))}
       </div>
-      {gameOver && (
-        <div className="game-over-modal">
-          <h2>Game Over</h2>
-          <p>Player: {playerName}</p>
-          <p>Score: {score}</p>
-          <p>Difficulty: {playerDifficulty}</p>
-          <button
-            onClick={() => {
-              setIsModalOpen(true);
-              handleRestart();
-            }}
-          >
-            Рестарт
-          </button>
-        </div>
-      )}
-      <ModalWindow
-        isOpen={isModalOpen}
-        onRequestClose={() => setIsModalOpen(false)}
-        // onSubmit={handlePlayerData}
-      />
     </div>
   );
 };

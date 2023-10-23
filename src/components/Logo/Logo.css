@@ -1,19 +1,18 @@
-.logo-container{
-display: flex;
-align-items: center;
-position: relative;
+.logo-container {
+  display: flex;
+  align-items: center;
+  position: relative;
 }
 
-.title{
-margin: 0 auto;
-padding: 30px;
-
+.title {
+  margin: 0 auto;
+  padding: 30px;
 }
 
 .logo {
   width: 50px;
   height: auto;
   position: absolute;
- top:30px;
- left:30px;
+  top: 30px;
+  left: 30px;
 }

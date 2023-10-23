@@ -17,12 +17,13 @@ const PlayerRating = ({ setPlayerName }) => {
 
   return (
     <div className="player-rating">
-      <h2>Рейтинг гравців</h2>
+      <h2 className="second-title">Leaderboard</h2>
       <div>
-        <label>Select Difficulty: </label>
+        <label className="level">Select level: </label>
         <select
+          className="input-text"
           value={selectedDifficulty}
-          onChange={(e) => setSelectedDifficulty(e.target.value)}
+          onChange={(event) => setSelectedDifficulty(event.target.value)}
         >
           <option value="easy">Easy</option>
           <option value="medium">Medium</option>

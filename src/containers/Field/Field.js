@@ -4,13 +4,7 @@ import Logo from "../../components/Logo/Logo";
 import Game from "../../components/Game/Game";
 import PlayerRating from "../../components/PlayerRating/PlayerRating";
 
-const Field = ({
-  playerName,
-  setPlayerName,
-  playerDifficulty,
-  setPlayerDifficulty,
-  gameSpeed,
-}) => {
+const Field = ({ playerName, playerDifficulty }) => {
   return (
     <div>
       <Logo />

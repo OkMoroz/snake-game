@@ -16,9 +16,13 @@ const Login = () => {
     <>
       <Logo />
       <div className="login-container">
-        <h1>Ласкаво просимо до гри Snake!</h1>
-        <p>Виберіть своє ім'я та рівень складності, щоб почати гру.</p>
-        <button onClick={openModal}>Почати гру</button>
+        <h1 className="title">Welcome to the Snake game!</h1>
+        <p className="wrapper">
+          Enter your name and choose the difficulty level to start the game.
+        </p>
+        <button onClick={openModal} className="primary-button">
+          Login
+        </button>
 
         <ModalWindow
           isOpen={isModalOpen}

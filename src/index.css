@@ -1,4 +1,14 @@
+:root {
+  --primary-color: #282c34;
+  --secondary-color: #e9ebf0;
+  --green: rgb(130, 196, 100);
+  --text-color-light: white;
+  --text-color-dark: #282c34;
+  --font-size: 18px;
+}
+
 body {
+  background-color: var(--primary-color);
   height: 100vh;
   padding: 0;
   display: flex;

@@ -1,14 +1,160 @@
-:root {
-  --primary-color: #282c34;
-  --secondary-color: #e9ebf0;
-  --text-color-light: white;
-  --text-color-dark: #282c34;
-  --font-size: 18px;
-}
-
 .main-container {
-  background-color: var(--primary-color);
   width: 100vw;
   height: 100vh;
   color: var(--text-color-light);
+  font-size: 30px;
+}
+
+.title {
+  color: var(--green);
+  font-size: 35px;
+  font-weight: 500;
+  font-weight: bold;
+}
+
+.wrapper {
+  color: var(--primary-color);
+  font-size: 20px;
+  font-weight: 500;
+  font-weight: bold;
+  margin-bottom: 40px;
+}
+
+.primary-button {
+  background-color: var(--green);
+  color: var(--primary-color);
+  border: 2px solid var(--primary-color);
+  padding: 10px 30px;
+  border-radius: 5px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  font-size: 20px;
+  font-weight: 500;
+  font-weight: bold;
+}
+
+.login-window {
+  background-color: var(--secondary-color);
+  color: var(--text-color-dark);
+  border-radius: 10px;
+  width: 80vw;
+  height: 80vh;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.input {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  margin-bottom: 25px;
+}
+
+.title-input {
+  color: var(--primary-color);
+  width: 50px;
+  padding: 10px 30px;
+  border-radius: 5px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: start;
+  font-size: 20px;
+  font-weight: 500;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.input-text {
+  font-size: 15px;
+  color: var(--primary-color);
+  border: 2px solid var(--primary-color);
+  padding: 10px 30px;
+  border-radius: 5px;
+}
+
+.error {
+  color: red;
+  font-size: 20px;
+  margin-bottom: 15px;
+  margin-top: 15px;
+}
+
+@media (max-width: 768px) {
+  .main-container {
+    margin: 20px;
+  }
+  .title {
+    font-size: 25px;
+    padding: 10px;
+  }
+  .wrapper {
+    font-size: 15px;
+    margin-bottom: 20px;
+    padding: 10px;
+  }
+  .primary-button {
+    padding: 7px 15px;
+    font-size: 15px;
+  }
+  .input {
+    font-size: 10px;
+    margin-bottom: 10px;
+  }
+
+  .title-input {
+    padding: 5px 8px;
+    font-size: 10px;
+    margin: 12px;
+  }
+
+  .input-text {
+    border: 1px solid var(--primary-color);
+    padding: 4px;
+  }
+  .error {
+    font-size: 15px;
+    margin: 10px;
+    padding: 10px;
+  }
+}
+@media (max-width: 360px) {
+  .main-container {
+    margin: 10px;
+  }
+  .title {
+    font-size: 12px;
+    padding: 5px;
+  }
+  .wrapper {
+    font-size: 8px;
+    margin-bottom: 10px;
+    padding: 5px;
+  }
+  .primary-button {
+    padding: 5px 10px;
+    font-size: 8px;
+  }
+  .input {
+    margin-bottom: 8px;
+    padding: 5px;
+  }
+
+  .title-input {
+    font-size: 8px;
+    margin-bottom: 8px;
+    margin-right: 8px;
+  }
+
+  .error {
+    font-size: 8px;
+    margin: 8px;
+    padding: 8px;
+  }
 }
