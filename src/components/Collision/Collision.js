@@ -11,6 +11,7 @@ const Collision = ({
   setGameOver,
   score,
   setScore,
+  playerDifficulty, 
 }) => {
   useEffect(() => {
     const checkCollision = () => {
@@ -42,9 +43,11 @@ const Collision = ({
       if (newHead.row === food.row && newHead.col === food.col) {
         setScore(score + 1);
         setFood(generateFoodPosition(newSnake));
+        const newFoodPosition = generateFoodPosition(newSnake, boardSize);
+
+        setFood(newFoodPosition);
+
         newSnake.unshift({ ...newHead });
-         const newFoodPosition = generateFoodPosition(snake, boardSize);
-         setFood(newFoodPosition);
       } else {
         newSnake.pop();
         switch (direction) {
@@ -69,11 +72,22 @@ const Collision = ({
       setSnake(newSnake);
     };
 
-    const gameInterval = setInterval(checkCollision, 200);
+    let gameSpeed = 0;
+
+    if (playerDifficulty === "easy") {
+      gameSpeed = 800;
+    } else if (playerDifficulty === "medium") {
+      gameSpeed = 100;
+    } else if (playerDifficulty === "hard") {
+      gameSpeed = 50;
+    }
+
+    const gameInterval = setInterval(checkCollision, gameSpeed);
 
     return () => {
       clearInterval(gameInterval);
     };
-  }, [snake, food, direction, score]);
+  }, [snake, food, direction, score, playerDifficulty]);
 };
+
 export default Collision;

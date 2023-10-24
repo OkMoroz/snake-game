@@ -1,10 +1,11 @@
-import React, { useState} from "react";
+import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
 import "./Game.css";
 import GameOver from "../GameOver/GameOver";
 import Keyboard from "../Keyboard/Keyboard";
 import Collision from "../Collision/Collision";
+// import Speed from "../Speed/Speed";
 
 const Game = () => {
   const boardSize = 25;
@@ -55,29 +56,33 @@ const Game = () => {
                 ></div>
               );
             })}
-            <Collision
-              snake={snake}
-              setSnake={setSnake}
-              food={food}
-              setFood={setFood}
-              boardSize={boardSize}
-              direction={direction}
-              setGameOver={setGameOver}
-              score={score}
-              setScore={setScore}
-            />
-            <Keyboard direction={direction} setDirection={setDirection} />
-            <GameOver
-              playerName={playerName}
-              score={score}
-              playerDifficulty={playerDifficulty}
-              isModalOpen={isModalOpen}
-              gameOver={gameOver}
-              setIsModalOpen={setIsModalOpen}
-            />
           </div>
         ))}
       </div>
+
+      <Collision
+        snake={snake}
+        setSnake={setSnake}
+        food={food}
+        setFood={setFood}
+        boardSize={boardSize}
+        direction={direction}
+        setGameOver={setGameOver}
+        score={score}
+        setScore={setScore}
+        playerDifficulty={playerDifficulty}
+      />
+
+      <Keyboard direction={direction} setDirection={setDirection} />
+
+      <GameOver
+        playerName={playerName}
+        score={score}
+        playerDifficulty={playerDifficulty}
+        isModalOpen={isModalOpen}
+        gameOver={gameOver}
+        setIsModalOpen={setIsModalOpen}
+      />
     </div>
   );
 };

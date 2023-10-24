@@ -19,14 +19,13 @@ const GameOver = ({
       }
     }
   }, [gameOver, playerName, score]);
- 
 
-function calculateNewRating(playerData) {
-  const score = playerData.score;
-  const newRating = score; 
+  function calculateNewRating(playerData) {
+    const score = playerData.score;
+    const newRating = score;
 
-  return newRating;
-}
+    return newRating;
+  }
 
   return (
     <>

@@ -35,18 +35,11 @@ const ModalWindow = ({ isOpen, onRequestClose, onSubmit }) => {
 
       localStorage.setItem(playerName, JSON.stringify(newPlayerData));
 
-      const speedOptions = {
-        easy: 1000,
-        medium: 500,
-        hard: 250,
-      };
-      const gameSpeed = speedOptions[playerDifficulty];
-
-      onSubmit({ ...newPlayerData, gameSpeed });
+      onSubmit({ ...newPlayerData });
 
       onRequestClose();
       navigate("/field", {
-        state: { playerDifficulty, playerName, gameSpeed },
+        state: { playerDifficulty, playerName },
       });
     }
   };

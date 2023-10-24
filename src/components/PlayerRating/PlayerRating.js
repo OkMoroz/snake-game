@@ -3,6 +3,22 @@ import "./PlayerRating.css";
 
 const PlayerRating = () => {
   const [players, setPlayers] = useState([]);
+  const [selectedDifficulty, setSelectedDifficulty] = useState("easy");
+
+  const filterAndSortPlayers = (players, selectedDifficulty) => {
+    const filteredPlayers = players.filter(
+      (player) => player.difficulty === selectedDifficulty
+    );
+
+    filteredPlayers.sort((player1, player2) => player2.score - player1.score);
+
+    return filteredPlayers;
+  };
+
+  const handleDifficultyChange = (event) => {
+    const selectedValue = event.target.value;
+    setSelectedDifficulty(selectedValue);
+  };
 
   useEffect(() => {
     const playerNames = Object.keys(localStorage);
@@ -20,9 +36,23 @@ const PlayerRating = () => {
     setPlayers(playerData);
   }, []);
 
+  const filteredAndSortedPlayers = filterAndSortPlayers(
+    players,
+    selectedDifficulty
+  );
+
   return (
     <div className="player-rating">
       <h2 className="second-title">PLAYER RATING</h2>
+      <select
+        value={selectedDifficulty}
+        onChange={handleDifficultyChange}
+        className="input-text"
+      >
+        <option value="easy">Easy</option>
+        <option value="medium">Medium</option>
+        <option value="hard">Hard</option>
+      </select>
       <ol className="items">
         <li className="item header">
           <span className="place">PLACE</span>
@@ -30,7 +60,7 @@ const PlayerRating = () => {
           <span className="score">SCORE</span>
           <span className="difficulty">DIFFICULTY</span>
         </li>
-        {players.map((player, index) => (
+        {filteredAndSortedPlayers.map((player, index) => (
           <li key={index} className="item">
             <span className="place">{index + 1}</span>
             <span className="name">{player.name}</span>
