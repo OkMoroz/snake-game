@@ -66,6 +66,11 @@ const ModalWindow = ({ isOpen, onRequestClose, onSubmit }) => {
             value={playerName}
             placeholder="Enter your name"
             onChange={handlePlayerNameChange}
+            onKeyDown={(event) => {
+              if (event.key === "Enter") {
+                handleSubmit();
+              }
+            }}
             className="input-text"
           />
         </div>

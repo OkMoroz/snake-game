@@ -19,7 +19,15 @@ const Login = () => {
         <p className="wrapper">
           Enter your name and choose the difficulty level to start the game.
         </p>
-        <button onClick={openModal} className="primary-button">
+        <button
+          onClick={openModal}
+          onKeyDown={(event) => {
+            if (event.key === "Enter") {
+              openModal();
+            }
+          }}
+          className="primary-button"
+        >
           Login
         </button>
 
