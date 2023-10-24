@@ -11,7 +11,7 @@ const Collision = ({
   setGameOver,
   score,
   setScore,
-  playerDifficulty, 
+  playerDifficulty,
 }) => {
   useEffect(() => {
     const checkCollision = () => {
@@ -75,11 +75,11 @@ const Collision = ({
     let gameSpeed = 0;
 
     if (playerDifficulty === "easy") {
-      gameSpeed = 800;
+      gameSpeed = 500;
     } else if (playerDifficulty === "medium") {
-      gameSpeed = 100;
+      gameSpeed = 200;
     } else if (playerDifficulty === "hard") {
-      gameSpeed = 50;
+      gameSpeed = 100;
     }
 
     const gameInterval = setInterval(checkCollision, gameSpeed);

@@ -3,12 +3,14 @@ import { useNavigate } from "react-router-dom";
 import Modal from "react-modal";
 Modal.setAppElement("#root");
 
-const ModalWindow = ({ isOpen, onRequestClose, onSubmit }) => {
-  const [playerName, setPlayerName] = useState("");
-  const [playerDifficulty, setPlayerDifficulty] = useState("easy");
+const ModalWindow = ({ isOpen, onRequestClose, playerData }) => {
+  const [playerName, setPlayerName] = useState(
+    playerData ? playerData.playerName : ""
+  );
+  const [playerDifficulty, setPlayerDifficulty] = useState(
+    playerData ? playerData.playerDifficulty : "easy"
+  );
   const [error, setError] = useState("");
-  const [score, setScore] = useState(0);
-  const [rating, setRating] = useState(0);
   const [isPlayerNameEntered, setIsPlayerNameEntered] = useState(false);
   const navigate = useNavigate();
 
@@ -19,23 +21,17 @@ const ModalWindow = ({ isOpen, onRequestClose, onSubmit }) => {
   };
 
   const handleSubmit = () => {
-    const existingPlayerData = JSON.parse(localStorage.getItem(playerName));
-
-    if (existingPlayerData) {
-      onRequestClose();
-    } else if (playerName === "") {
+    if (playerName === "") {
       setError("You haven't entered a name. Enter your name");
     } else {
-      const newPlayerData = {
+      const updatedPlayerData = {
         playerName,
         playerDifficulty,
-        score,
-        rating,
+        score: 0,
+        rating: 0,
       };
 
-      localStorage.setItem(playerName, JSON.stringify(newPlayerData));
-
-      onSubmit({ ...newPlayerData });
+      localStorage.setItem(playerName, JSON.stringify(updatedPlayerData));
 
       onRequestClose();
       navigate("/field", {

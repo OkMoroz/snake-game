@@ -1,13 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 
 import "./Game.css";
 import GameOver from "../GameOver/GameOver";
 import Keyboard from "../Keyboard/Keyboard";
 import Collision from "../Collision/Collision";
-// import Speed from "../Speed/Speed";
 
-const Game = () => {
+const Game = ({ onSubmit }) => {
   const boardSize = 25;
   const [snake, setSnake] = useState([
     { row: 0, col: 4 },
@@ -22,7 +21,21 @@ const Game = () => {
   const [gameOver, setGameOver] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const location = useLocation();
-  const { playerDifficulty, playerName, gameSpeed } = location.state;
+  const { playerDifficulty, playerName } = location.state;
+  const handleStartNewGameWithPlayer = () => {
+    setSnake([
+      { row: 0, col: 4 },
+      { row: 0, col: 3 },
+      { row: 0, col: 2 },
+      { row: 0, col: 1 },
+      { row: 0, col: 0 },
+    ]);
+    setFood({ row: 5, col: 5 });
+    setDirection("RIGHT");
+    setScore(0);
+    setIsModalOpen(true);
+    onSubmit();
+  };
 
   return (
     <div className="field">
@@ -82,6 +95,7 @@ const Game = () => {
         isModalOpen={isModalOpen}
         gameOver={gameOver}
         setIsModalOpen={setIsModalOpen}
+        onSubmit={handleStartNewGameWithPlayer}
       />
     </div>
   );

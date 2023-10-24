@@ -8,6 +8,8 @@ const GameOver = ({
   isModalOpen,
   gameOver,
   setIsModalOpen,
+  playerData,
+  onSubmit,
 }) => {
   useEffect(() => {
     if (gameOver) {
@@ -18,7 +20,7 @@ const GameOver = ({
         localStorage.setItem(playerName, JSON.stringify(existingPlayerData));
       }
     }
-  }, [gameOver, playerName, score]);
+  }, [gameOver, playerName, score, playerData]);
 
   function calculateNewRating(playerData) {
     const score = playerData.score;
@@ -54,6 +56,7 @@ const GameOver = ({
               setIsModalOpen(false);
               window.location.reload();
             }}
+            onSubmit={onSubmit}
           />
         </div>
       )}

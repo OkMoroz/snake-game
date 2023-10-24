@@ -11,6 +11,10 @@ const Login = () => {
     setIsModalOpen(true);
   };
 
+  const onSubmit = (playerData) => {
+    console.log("Дані для входу:", playerData);
+  };
+
   return (
     <>
       <Logo />
@@ -34,9 +38,7 @@ const Login = () => {
         <ModalWindow
           isOpen={isModalOpen}
           onRequestClose={() => setIsModalOpen(false)}
-          onSubmit={(data) => {
-            console.log("Дані для входу:", data);
-          }}
+          onSubmit={onSubmit}
         />
       </div>
     </>
