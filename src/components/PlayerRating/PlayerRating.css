@@ -1,0 +1,80 @@
+.player-rating {
+  color: var(--green);
+  font-weight: 500;
+  display: flex;
+  flex-direction: column;
+}
+
+.second-title {
+  padding: 10px;
+  text-align: center;
+  margin: 10px;
+  font-size: 30px;
+}
+
+.header {
+  display: flex;
+  justify-content: start;
+  gap: 10px;
+  font-weight: bold;
+}
+
+.items {
+  color: var(--text-color-dark);
+  font-size: 20px;
+  padding: 10px;
+}
+.items li:nth-child(2),
+.items li:nth-child(3),
+.items li:nth-child(4) {
+  background-color: var(--green);
+  font-weight: bold;
+}
+
+.item {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 10px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.difficulty {
+  width: 110px;
+}
+
+@media (max-width: 960px) {
+  .second-title {
+    font-size: 25px;
+    padding: 8px 15px;
+  }
+  .header {
+    font-size: 20px;
+  }
+  .items {
+    font-size: 18px;
+  }
+}
+@media (max-width: 720px) {
+  .right-section {
+    width: 300px;
+    height: 100vh;
+  }
+  .header {
+    font-size: 15px;
+  }
+  .items {
+    font-size: 12px;
+  }
+}
+@media (max-width: 320px) {
+  .second-title {
+    font-size: 15px;
+    padding: 5px 8px;
+  }
+  .header {
+    font-size: 10px;
+  }
+  .items {
+    font-size: 8px;
+  }
+}

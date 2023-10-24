@@ -1,52 +1,44 @@
 import React, { useState, useEffect } from "react";
+import "./PlayerRating.css";
 
-const PlayerRating = ({ setPlayerName }) => {
-  const [selectedDifficulty, setSelectedDifficulty] = useState("easy");
-  const [playerRatings, setPlayerRatings] = useState({
-    easy: [],
-    medium: [],
-    hard: [],
-  });
+const PlayerRating = () => {
+  const [players, setPlayers] = useState([]);
 
   useEffect(() => {
-    const storedRatings = JSON.parse(localStorage.getItem("playerRatings"));
-    if (storedRatings) {
-      setPlayerRatings(storedRatings);
-    }
+    const playerNames = Object.keys(localStorage);
+    const playerData = playerNames.map((name) => {
+      const player = JSON.parse(localStorage.getItem(name));
+      return {
+        name,
+        difficulty: player.playerDifficulty,
+        score: player.score || 0,
+      };
+    });
+
+    playerData.sort((player1, player2) => player2.score - player1.score);
+
+    setPlayers(playerData);
   }, []);
-
-  const sortPlayersByRating = (players) => {
-    return players.slice().sort((a, b) => b.rating - a.rating);
-  };
-
-  const handleDifficultyChange = (event) => {
-    setSelectedDifficulty(event.target.value);
-  };
 
   return (
     <div className="player-rating">
-      <h2 className="second-title">Leaderboard</h2>
-      <div>
-        <label className="level">Select level: </label>
-        <select
-          className="input-text"
-          value={selectedDifficulty}
-          onChange={handleDifficultyChange}
-        >
-          <option value="easy">Easy</option>
-          <option value="medium">Medium</option>
-          <option value="hard">Hard</option>
-        </select>
-      </div>
-      <ul>
-        {sortPlayersByRating(playerRatings[selectedDifficulty]).map(
-          (player, index) => (
-            <li key={index}>
-              {player.name}: {player.rating}
-            </li>
-          )
-        )}
-      </ul>
+      <h2 className="second-title">PLAYER RATING</h2>
+      <ol className="items">
+        <li className="item header">
+          <span className="place">PLACE</span>
+          <span className="name">NAME</span>
+          <span className="score">SCORE</span>
+          <span className="difficulty">DIFFICULTY</span>
+        </li>
+        {players.map((player, index) => (
+          <li key={index} className="item">
+            <span className="place">{index + 1}</span>
+            <span className="name">{player.name}</span>
+            <span className="score">{player.score}</span>
+            <span className="difficulty">{player.difficulty}</span>
+          </li>
+        ))}
+      </ol>
     </div>
   );
 };

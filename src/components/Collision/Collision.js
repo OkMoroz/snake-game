@@ -43,6 +43,8 @@ const Collision = ({
         setScore(score + 1);
         setFood(generateFoodPosition(newSnake));
         newSnake.unshift({ ...newHead });
+         const newFoodPosition = generateFoodPosition(snake, boardSize);
+         setFood(newFoodPosition);
       } else {
         newSnake.pop();
         switch (direction) {

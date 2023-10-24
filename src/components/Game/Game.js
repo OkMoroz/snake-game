@@ -30,6 +30,7 @@ const Game = () => {
         <div className="game-name">Score: {score}</div>
         <div className="game-name">Difficulty: {playerDifficulty}</div>
       </div>
+
       <div className="board">
         {Array.from({ length: boardSize }).map((_, rowIndex) => (
           <div key={rowIndex} className="row">

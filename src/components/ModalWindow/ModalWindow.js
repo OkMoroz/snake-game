@@ -38,7 +38,7 @@ const ModalWindow = ({ isOpen, onRequestClose, onSubmit }) => {
       const speedOptions = {
         easy: 1000,
         medium: 500,
-        hard: 1,
+        hard: 250,
       };
       const gameSpeed = speedOptions[playerDifficulty];
 
