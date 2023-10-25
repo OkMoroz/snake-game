@@ -4,7 +4,11 @@
   position: relative;
 }
 
-.title {
+.logo-title {
+  color: var(--green);
+  font-size: 50px;
+  font-weight: 500;
+  font-weight: bold;
   margin: 0 auto;
   padding: 30px;
 }

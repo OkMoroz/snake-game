@@ -8,7 +8,7 @@ const Logo = () => {
       <Link to="/">
         <img src={logo} alt="logo" className="logo" />
       </Link>
-      <h1 className="title">SNAKE GAME</h1>
+      <h1 className="logo-title ">SNAKE GAME</h1>
     </div>
   );
 };

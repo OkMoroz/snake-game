@@ -17,6 +17,7 @@ const Collision = ({
     const checkCollision = () => {
       const head = snake[0];
 
+      // Зіткнень з межами гри
       if (head.row < 0) {
         head.row = boardSize - 1;
       } else if (head.row >= boardSize) {
@@ -33,6 +34,8 @@ const Collision = ({
       const endGame = () => {
         setGameOver(true);
       };
+
+      // Зіткнень з самим собою
       for (let i = 2; i < newSnake.length; i++) {
         if (head.row === newSnake[i].row && head.col === newSnake[i].col) {
           endGame();
@@ -40,6 +43,7 @@ const Collision = ({
         }
       }
 
+      // Поїдання їжі та збільшення рахунку
       if (newHead.row === food.row && newHead.col === food.col) {
         setScore(score + 1);
         setFood(generateFoodPosition(newSnake));
@@ -72,6 +76,7 @@ const Collision = ({
       setSnake(newSnake);
     };
 
+    // Визначаю швидкості гри залежно від рівня складності гравця
     let gameSpeed = 0;
 
     if (playerDifficulty === "easy") {

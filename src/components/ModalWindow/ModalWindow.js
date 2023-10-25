@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Modal from "react-modal";
+import QuitButton from "../QuitButton/QuitButton";
+
 Modal.setAppElement("#root");
 
 const ModalWindow = ({ isOpen, onRequestClose, playerData }) => {
@@ -14,12 +16,14 @@ const ModalWindow = ({ isOpen, onRequestClose, playerData }) => {
   const [isPlayerNameEntered, setIsPlayerNameEntered] = useState(false);
   const navigate = useNavigate();
 
+  // Зміна імені гравця
   const handlePlayerNameChange = (event) => {
     const newName = event.target.value;
     setPlayerName(newName);
     setIsPlayerNameEntered(newName !== "");
   };
 
+  // Функція, яка виконується при натисканні на кнопку "Start game"
   const handleSubmit = () => {
     if (playerName === "") {
       setError("You haven't entered a name. Enter your name");
@@ -31,12 +35,23 @@ const ModalWindow = ({ isOpen, onRequestClose, playerData }) => {
         rating: 0,
       };
 
+      // Зберігаю дані гравця в localStorage.
       localStorage.setItem(playerName, JSON.stringify(updatedPlayerData));
 
+      // Закриваємю модальне вікно та йду на сторінку гри
       onRequestClose();
       navigate("/field", {
         state: { playerDifficulty, playerName },
       });
+    }
+  };
+
+  // Функція, яка виконується при натисканні на кнопку "Quit"
+  const handleQuit = () => {
+    if (window.location.pathname === "/") {
+      onRequestClose();
+    } else {
+      navigate("/", { state: { fromRestart: true } });
     }
   };
 
@@ -76,9 +91,12 @@ const ModalWindow = ({ isOpen, onRequestClose, playerData }) => {
           </select>
         </div>
       </div>
-      <button onClick={handleSubmit} className="primary-button">
-        Start game
-      </button>
+      <div className="buttons">
+        <button onClick={handleSubmit} className="primary-button">
+          Start game
+        </button>
+        <QuitButton onQuit={handleQuit} />
+      </div>
       {error && <p className="error">{error}</p>}
     </Modal>
   );

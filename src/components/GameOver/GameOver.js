@@ -22,6 +22,7 @@ const GameOver = ({
     }
   }, [gameOver, playerName, score, playerData]);
 
+  // Функція для розрахунку нового рейтингу гравця
   function calculateNewRating(playerData) {
     const score = playerData.score;
     const newRating = score;
@@ -31,6 +32,7 @@ const GameOver = ({
 
   return (
     <>
+      {/* Вікно gameOver */}
       {gameOver && (
         <div className="game-over-modal">
           <h2>GAME OVER</h2>
@@ -50,6 +52,7 @@ const GameOver = ({
               Restart
             </button>
           )}
+          {/* Модальне вікно після кліку на Restart */}
           <ModalWindow
             isOpen={isModalOpen}
             onRequestClose={() => {

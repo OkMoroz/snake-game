@@ -4,6 +4,8 @@ import { useLocation } from "react-router-dom";
 import "./Game.css";
 import GameOver from "../GameOver/GameOver";
 import Keyboard from "../Keyboard/Keyboard";
+import GameInfo from "../GameInfo/GameInfo";
+import Board from "../Board/Board";
 import Collision from "../Collision/Collision";
 
 const Game = ({ onSubmit }) => {
@@ -39,40 +41,12 @@ const Game = ({ onSubmit }) => {
 
   return (
     <div className="field">
-      <div className="game-info">
-        <div className="game-name">Player: {playerName}</div>
-        <div className="game-name">Score: {score}</div>
-        <div className="game-name">Difficulty: {playerDifficulty}</div>
-      </div>
-
-      <div className="board">
-        {Array.from({ length: boardSize }).map((_, rowIndex) => (
-          <div key={rowIndex} className="row">
-            {Array.from({ length: boardSize }).map((_, colIndex) => {
-              const isSnakeHead =
-                rowIndex === snake[0].row && colIndex === snake[0].col;
-              return (
-                <div
-                  key={colIndex}
-                  className={`cell${
-                    snake.some(
-                      (segment) =>
-                        segment.row === rowIndex && segment.col === colIndex
-                    )
-                      ? isSnakeHead
-                        ? " snake-head"
-                        : " snake-tail"
-                      : food.row === rowIndex && food.col === colIndex
-                      ? " food"
-                      : ""
-                  }`}
-                ></div>
-              );
-            })}
-          </div>
-        ))}
-      </div>
-
+      <GameInfo
+        playerName={playerName}
+        score={score}
+        playerDifficulty={playerDifficulty}
+      />
+      <Board boardSize={boardSize} snake={snake} food={food} />
       <Collision
         snake={snake}
         setSnake={setSnake}
@@ -85,9 +59,7 @@ const Game = ({ onSubmit }) => {
         setScore={setScore}
         playerDifficulty={playerDifficulty}
       />
-
       <Keyboard direction={direction} setDirection={setDirection} />
-
       <GameOver
         playerName={playerName}
         score={score}

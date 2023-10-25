@@ -5,6 +5,7 @@ const PlayerRating = () => {
   const [players, setPlayers] = useState([]);
   const [selectedDifficulty, setSelectedDifficulty] = useState("easy");
 
+  // Функція для фільтрації та сортування гравців
   const filterAndSortPlayers = (players, selectedDifficulty) => {
     const filteredPlayers = players.filter(
       (player) => player.difficulty === selectedDifficulty
@@ -20,6 +21,8 @@ const PlayerRating = () => {
     setSelectedDifficulty(selectedValue);
   };
 
+  // Отримую списку імен гравців з localStorage
+
   useEffect(() => {
     const playerNames = Object.keys(localStorage);
     const playerData = playerNames.map((name) => {
@@ -31,11 +34,13 @@ const PlayerRating = () => {
       };
     });
 
+    // Рейтинг
     playerData.sort((player1, player2) => player2.score - player1.score);
 
     setPlayers(playerData);
   }, []);
 
+  // Фільтрую гравців
   const filteredAndSortedPlayers = filterAndSortPlayers(
     players,
     selectedDifficulty

@@ -1,9 +1,8 @@
-import React, { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./containers/Login/Login";
 import Field from "./containers/Field/Field";
 
-const App = () => {
+const AppRouter = () => {
   return (
     <BrowserRouter>
       <Routes>
@@ -14,4 +13,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default AppRouter;
