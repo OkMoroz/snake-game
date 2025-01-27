@@ -28,7 +28,7 @@ const PlayerRating = () => {
       let player = null;
       try {
         const playerDataString = localStorage.getItem(name);
-        console.log("Player data from localStorage:", playerDataString); // Логування для перевірки
+        console.log("Player data from localStorage:", playerDataString);
 
         // Перевірка на валідність JSON
         player = JSON.parse(playerDataString);
@@ -37,13 +37,13 @@ const PlayerRating = () => {
         }
       } catch (error) {
         console.error(`Error parsing player data for ${name}:`, error);
-        player = { name, difficulty: "easy", score: 0 }; // Заміна на дефолтні значення у разі помилки
+        player = { name, difficulty: "easy", score: 0 };
       }
 
       return {
         name,
-        difficulty: player.playerDifficulty,
-        score: player.score || 0,
+        difficulty: player?.playerDifficulty || "easy",
+        score: player?.score || 0,
       };
     });
 
