@@ -22,11 +22,24 @@ const PlayerRating = () => {
   };
 
   // Отримую списку імен гравців з localStorage
-
   useEffect(() => {
     const playerNames = Object.keys(localStorage);
     const playerData = playerNames.map((name) => {
-      const player = JSON.parse(localStorage.getItem(name));
+      let player = null;
+      try {
+        const playerDataString = localStorage.getItem(name);
+        console.log("Player data from localStorage:", playerDataString); // Логування для перевірки
+
+        // Перевірка на валідність JSON
+        player = JSON.parse(playerDataString);
+        if (!player || !player.playerDifficulty || !player.score) {
+          throw new Error("Invalid player data");
+        }
+      } catch (error) {
+        console.error(`Error parsing player data for ${name}:`, error);
+        player = { name, difficulty: "easy", score: 0 }; // Заміна на дефолтні значення у разі помилки
+      }
+
       return {
         name,
         difficulty: player.playerDifficulty,
