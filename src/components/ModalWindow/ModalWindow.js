@@ -13,7 +13,7 @@ const ModalWindow = ({ isOpen, onRequestClose, playerData }) => {
     playerData ? playerData.playerDifficulty : "easy"
   );
   const [error, setError] = useState("");
-  const [setIsPlayerNameEntered] = useState(false);
+  const [isPlayerNameEntered, setIsPlayerNameEntered] = useState(false);
   const navigate = useNavigate();
 
   const handlePlayerNameChange = (event) => {
@@ -87,7 +87,11 @@ const ModalWindow = ({ isOpen, onRequestClose, playerData }) => {
         </div>
       </div>
       <div className="buttons">
-        <button onClick={handleSubmit} className="primary-button">
+        <button
+          onClick={handleSubmit}
+          className="primary-button"
+          disabled={!isPlayerNameEntered}
+        >
           Start game
         </button>
         <QuitButton onQuit={handleQuit} />
