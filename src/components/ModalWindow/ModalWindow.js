@@ -13,17 +13,15 @@ const ModalWindow = ({ isOpen, onRequestClose, playerData }) => {
     playerData ? playerData.playerDifficulty : "easy"
   );
   const [error, setError] = useState("");
-  const [isPlayerNameEntered, setIsPlayerNameEntered] = useState(false);
+  const [setIsPlayerNameEntered] = useState(false);
   const navigate = useNavigate();
 
-  // Зміна імені гравця
   const handlePlayerNameChange = (event) => {
     const newName = event.target.value;
     setPlayerName(newName);
     setIsPlayerNameEntered(newName !== "");
   };
 
-  // Функція, яка виконується при натисканні на кнопку "Start game"
   const handleSubmit = () => {
     if (playerName === "") {
       setError("You haven't entered a name. Enter your name");
@@ -35,10 +33,8 @@ const ModalWindow = ({ isOpen, onRequestClose, playerData }) => {
         rating: 0,
       };
 
-      // Зберігаю дані гравця в localStorage.
       localStorage.setItem(playerName, JSON.stringify(updatedPlayerData));
 
-      // Закриваємю модальне вікно та йду на сторінку гри
       onRequestClose();
       navigate("/field", {
         state: { playerDifficulty, playerName },
@@ -46,7 +42,6 @@ const ModalWindow = ({ isOpen, onRequestClose, playerData }) => {
     }
   };
 
-  // Функція, яка виконується при натисканні на кнопку "Quit"
   const handleQuit = () => {
     if (window.location.pathname === "/") {
       onRequestClose();
