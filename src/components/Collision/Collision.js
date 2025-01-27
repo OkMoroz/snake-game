@@ -92,7 +92,18 @@ const Collision = ({
     return () => {
       clearInterval(gameInterval);
     };
-  }, [snake, food, direction, score, playerDifficulty]);
+  }, [
+    snake,
+    setSnake,
+    food,
+    setFood,
+    boardSize,
+    direction,
+    setGameOver,
+    score,
+    setScore,
+    playerDifficulty,
+  ]);
 };
 
 export default Collision;

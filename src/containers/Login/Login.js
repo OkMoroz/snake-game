@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-
 import "./Login.css";
 import Logo from "../../components/Logo/Logo";
 import logo from "../../assets/image/logo.png";
@@ -8,7 +7,6 @@ import ModalWindow from "../../components/ModalWindow/ModalWindow";
 const Login = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // Функція для відкриття модального вікна
   const openModal = () => {
     setIsModalOpen(true);
   };

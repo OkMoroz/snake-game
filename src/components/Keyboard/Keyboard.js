@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-const Keyboard=({ direction, setDirection })=> {
+const Keyboard = ({ direction, setDirection }) => {
   useEffect(() => {
     const handleKeyPress = (event) => {
       switch (event.key) {
@@ -32,6 +32,6 @@ const Keyboard=({ direction, setDirection })=> {
     return () => {
       window.removeEventListener("keydown", handleKeyPress);
     };
-  }, [direction]);
-}
+  }, [direction, setDirection]);
+};
 export default Keyboard;
